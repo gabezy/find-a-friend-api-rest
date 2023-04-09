@@ -10,6 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Org {
+  id               String @id @default(uuid())
+  name             String
+  email            String @unique
+  person_in_charge String
+  cep              String
+  address          String
+  whatsapp         String
+  password         String
+  pet              Pet[]
+
+  @@map("orgs")
+}
+
 model Pet {
   id           String        @id @default(uuid())
   name         String
@@ -23,6 +37,8 @@ model Pet {
   updated_at   DateTime?
   photos       Photo[]
   requirements Requirement[]
+  Org          Org?          @relation(fields: [orgId], references: [id])
+  orgId        String?
 
   @@map("pets")
 }

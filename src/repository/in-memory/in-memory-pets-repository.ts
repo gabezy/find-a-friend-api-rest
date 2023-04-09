@@ -29,5 +29,7 @@ export class InMemoryPetsRepository implements PetsRepository {
     };
 
     this.items.push(pet);
+
+    return pet;
   }
 }

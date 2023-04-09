@@ -11,7 +11,7 @@
 
 - [] For list the pets, must inform the city
 - [] An organization needs to have an address and a whatsapp number
-- [] A pet must be associated with a
+- [] A pet must be associated with an organization
 - [] The user who wants to adopt will get in touch with the organization via Whatsapp
 - [] All filters beside the city are optional
 - [] For a organization access the application as an admin, it needs to be logged in
