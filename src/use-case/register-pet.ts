@@ -1,14 +1,16 @@
 import { Pet } from "@prisma/client";
-import { PetsRepository } from "../repository/pets-repossitory";
+import { PetsRepository } from "../repository/pets-repository";
+import { OrgsRepository } from "@/repository/orgs-repository";
 
 interface RegisterPetCaseRequest {
   name: string;
   about: string;
-  age: string;
+  age: number;
   size: string;
-  energy: string;
-  independence: string;
+  energy: number;
+  independence: number;
   environment: string;
+  org_id: string;
 }
 
 interface RegisterPetCaseResponse {
@@ -16,7 +18,10 @@ interface RegisterPetCaseResponse {
 }
 
 export class RegisterPetUseCase {
-  constructor(private readonly petsRepository: PetsRepository) {}
+  constructor(
+    private readonly petsRepository: PetsRepository,
+    private readonly orgsRepository: OrgsRepository
+  ) {}
 
   async execute({
     name,
@@ -26,6 +31,7 @@ export class RegisterPetUseCase {
     environment,
     independence,
     size,
+    org_id,
   }: RegisterPetCaseRequest): Promise<RegisterPetCaseResponse> {
     const pet = await this.petsRepository.create({
       name,
@@ -35,6 +41,7 @@ export class RegisterPetUseCase {
       environment,
       independence,
       size,
+      org_id,
     });
 
     return {

@@ -11,52 +11,59 @@ datasource db {
 }
 
 model Org {
-  id               String @id @default(uuid())
-  name             String
-  email            String @unique
-  person_in_charge String
-  cep              String
-  address          String
-  whatsapp         String
-  password         String
-  pet              Pet[]
+  id             String @id @default(uuid())
+  name           String
+  email          String @unique
+  personInCharge String @map("person_in_charge")
+
+  uf         String @db.Char(2)
+  cep        String @db.Char(8)
+  cidade     String
+  logradouro String
+  bairro     String
+
+  whatsapp String
+  password String
+  pets     Pet[]
 
   @@map("orgs")
 }
 
 model Pet {
-  id           String        @id @default(uuid())
+  id           String    @id @default(uuid())
   name         String
   about        String
-  age          String
+  age          Int
   size         String
-  energy       String
-  independence String
+  energy       Int
+  independence Int
   environment  String
-  created_at   DateTime      @default(now())
+  created_at   DateTime  @default(now())
   updated_at   DateTime?
-  photos       Photo[]
-  requirements Requirement[]
-  Org          Org?          @relation(fields: [orgId], references: [id])
-  orgId        String?
+
+  Requirement Requirement[]
+  Photo       Photo[]
+
+  org    Org    @relation(fields: [org_id], references: [id])
+  org_id String
 
   @@map("pets")
 }
 
 model Photo {
-  id    String  @id @default(uuid())
-  data  Bytes
-  Pet   Pet?    @relation(fields: [petId], references: [id])
-  petId String?
+  id     String @id @default(uuid())
+  data   Bytes
+  pet    Pet    @relation(fields: [pet_id], references: [id])
+  pet_id String
 
   @@map("photos")
 }
 
 model Requirement {
-  id          String  @id @default(uuid())
+  id          String @id @default(uuid())
   description String
-  Pet         Pet?    @relation(fields: [petId], references: [id])
-  petId       String?
+  pet         Pet    @relation(fields: [pet_id], references: [id])
+  pet_id      String
 
   @@map("requirements")
 }

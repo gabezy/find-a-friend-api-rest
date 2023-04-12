@@ -13,15 +13,35 @@ export class InMemoryOrgsRepository implements OrgsRepository {
     return org;
   }
 
+  async findByUfAndCity(uf: string, city: string): Promise<Org[]> {
+    return this.items.filter(
+      (item) =>
+        item.uf.toLocaleLowerCase() === uf.toLocaleLowerCase() &&
+        item.cidade.toLocaleLowerCase() === city.toLocaleLowerCase()
+    );
+  }
+
+  async findByEmail(email: string): Promise<Org | null> {
+    const org = this.items.find((item) => item.email === email);
+
+    if (org == null) {
+      return null;
+    }
+    return org;
+  }
+
   async create(data: Prisma.OrgCreateInput): Promise<Org> {
     const org = {
       id: randomUUID(),
       name: data.name,
-      cep: data.cep,
       email: data.email,
       whatsapp: data.whatsapp,
-      address: data.address,
-      person_in_charge: data.person_in_charge,
+      personInCharge: data.personInCharge,
+      cep: data.cep,
+      uf: data.uf,
+      logradouro: data.logradouro,
+      cidade: data.cidade,
+      bairro: data.bairro,
       password: data.password,
     };
     this.items.push(org);
