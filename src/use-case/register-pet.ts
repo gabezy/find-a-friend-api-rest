@@ -18,10 +18,7 @@ interface RegisterPetCaseResponse {
 }
 
 export class RegisterPetUseCase {
-  constructor(
-    private readonly petsRepository: PetsRepository,
-    private readonly orgsRepository: OrgsRepository
-  ) {}
+  constructor(private readonly petsRepository: PetsRepository) {}
 
   async execute({
     name,

@@ -13,7 +13,7 @@ describe("Register Pet Use case", () => {
   beforeEach(() => {
     petsRepository = new InMemoryPetsRepository();
     orgsRepository = new InMemoryOrgsRepository();
-    sut = new RegisterPetUseCase(petsRepository, orgsRepository);
+    sut = new RegisterPetUseCase(petsRepository);
   });
 
   it("should be able to register a pet", async () => {
