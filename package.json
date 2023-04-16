@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "test": "vitest run --dir src/use-case",
+    "test:unit": "vitest run --dir src/use-case",
     "start": "node build/server.js"
   },
   "keywords": [],

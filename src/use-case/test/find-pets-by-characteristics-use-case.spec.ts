@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { OrgsRepository } from "@/repository/orgs-repository";
 import { InMemoryOrgsRepository } from "@/repository/in-memory/in-memory-orgs-repository";
 import { PetsRepository } from "@/repository/pets-repository";
-import { FindPetsByCharacteristicsUseCase } from "../find-pets-by-characteristics-use-case";
+import { FindPetsByCharacteristicsUseCase } from "../pets/find-pets-by-characteristics-use-case";
 
 let petsRepository: PetsRepository;
 let orgsRepository: OrgsRepository;

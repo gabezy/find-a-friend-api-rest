@@ -1,6 +1,5 @@
 import { Pet } from "@prisma/client";
-import { PetsRepository } from "../repository/pets-repository";
-import { OrgsRepository } from "@/repository/orgs-repository";
+import { PetsRepository } from "@/repository/pets-repository";
 
 interface RegisterPetCaseRequest {
   name: string;

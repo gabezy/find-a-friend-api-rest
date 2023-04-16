@@ -10,6 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id          String    @id @default(uuid())
+  name        String
+  last_name   String
+  username    String    @unique
+  password    String
+  createad_at DateTime  @default(now())
+  updated_at  DateTime?
+
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+}
+
 model Org {
   id             String @id @default(uuid())
   name           String
@@ -21,6 +38,7 @@ model Org {
   cidade     String
   logradouro String
   bairro     String
+  role       Role   @default(MEMBER)
 
   whatsapp String
   password String
@@ -41,8 +59,8 @@ model Pet {
   created_at   DateTime  @default(now())
   updated_at   DateTime?
 
-  Requirement Requirement[]
-  Photo       Photo[]
+  requirements Requirement[]
+  photos       Photo[]
 
   org    Org    @relation(fields: [org_id], references: [id])
   org_id String

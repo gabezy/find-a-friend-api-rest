@@ -31,7 +31,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
   }
 
   async create(data: Prisma.OrgCreateInput): Promise<Org> {
-    const org = {
+    const org: Org = {
       id: randomUUID(),
       name: data.name,
       email: data.email,
@@ -42,6 +42,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
       logradouro: data.logradouro,
       cidade: data.cidade,
       bairro: data.bairro,
+      role: "MEMBER",
       password: data.password,
     };
     this.items.push(org);

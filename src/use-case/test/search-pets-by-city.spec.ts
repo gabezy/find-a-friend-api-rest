@@ -1,9 +1,9 @@
 import { OrgsRepository } from "@/repository/orgs-repository";
 import { PetsRepository } from "@/repository/pets-repository";
 import { beforeEach, describe, expect, it } from "vitest";
-import { SearchPetsByCityUseCase } from "../search-pets-by-city";
 import { InMemoryPetsRepository } from "@/repository/in-memory/in-memory-pets-repository";
 import { InMemoryOrgsRepository } from "@/repository/in-memory/in-memory-orgs-repository";
+import { SearchPetsByCityUseCase } from "../pets/search-pets-by-city";
 
 let petsRepository: PetsRepository;
 let orgsRepository: OrgsRepository;

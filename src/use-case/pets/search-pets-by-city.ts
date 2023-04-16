@@ -1,7 +1,7 @@
 import { OrgsRepository } from "@/repository/orgs-repository";
 import { PetsRepository } from "@/repository/pets-repository";
 import { Pet } from "@prisma/client";
-import { OrgNotFoundError } from "./erro/org-not-found.error";
+import { OrgNotFoundError } from "../erro/org-not-found.error";
 
 interface SearchPetsByCityRequest {
   uf: string;
@@ -25,7 +25,7 @@ export class SearchPetsByCityUseCase {
     const orgs = await this.orgsRepository.findByUfAndCity(uf, city);
 
     if (orgs.length === 0) {
-      throw new OrgNotFoundError();
+      throw new OrgNotFoundErro();
     }
 
     const pets = await this.petsRepository.findManyByOrgs(orgs);

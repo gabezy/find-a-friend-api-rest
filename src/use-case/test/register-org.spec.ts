@@ -1,9 +1,8 @@
 import { OrgsRepository } from "@/repository/orgs-repository";
 import { beforeEach, describe, expect, it } from "vitest";
-import { RegisterOrgUseCase } from "../register-org";
 import { InMemoryOrgsRepository } from "@/repository/in-memory/in-memory-orgs-repository";
-import { getAddressByCep } from "../fetch-address-by-cep";
 import { compare } from "bcryptjs";
+import { RegisterOrgUseCase } from "../orgs/register-org";
 import { OrgAlreadyExistsError } from "../erro/org-already-exists-error";
 
 let orgsRepository: OrgsRepository;
