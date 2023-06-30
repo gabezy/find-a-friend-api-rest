@@ -1,5 +1,5 @@
 import { Org, Prisma } from "@prisma/client";
-import { OrgsRepository } from "../orgs-repository";
+import { OrgDetails, OrgsRepository } from "../orgs-repository";
 import { randomUUID } from "crypto";
 
 export class InMemoryOrgsRepository implements OrgsRepository {
@@ -28,6 +28,23 @@ export class InMemoryOrgsRepository implements OrgsRepository {
       return null;
     }
     return org;
+  }
+
+  async getDetails(id: string): Promise<OrgDetails | null> {
+    const org = await this.findById(id);
+    if (org == null) {
+      return null;
+    }
+    return {
+      email: org.email,
+      name: org.name,
+      whatsapp: org.whatsapp,
+      person_in_change: org.personInCharge,
+      uf: org.uf,
+      bairro: org.bairro,
+      cidade: org.cidade,
+      logradouro: org.logradouro,
+    };
   }
 
   async create(data: Prisma.OrgCreateInput): Promise<Org> {
